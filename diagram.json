@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "author": "AOI Edge-AI",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-ssd1306", "id": "oled", "top": -110, "left": 200, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-pushbutton", "id": "btnNext", "top": 160, "left": 210, "attrs": { "color": "green", "label": "NEXT" } },
+    { "type": "wokwi-pushbutton", "id": "btnAuto", "top": 260, "left": 210, "attrs": { "color": "blue", "label": "AUTO" } },
+    { "type": "wokwi-led", "id": "ledPass",   "top": -40, "left": -120, "attrs": { "color": "green", "label": "PASS" } },
+    { "type": "wokwi-led", "id": "ledDefect", "top": 40,  "left": -120, "attrs": { "color": "red",   "label": "DEFECT" } },
+    { "type": "wokwi-led", "id": "ledBusy",   "top": 120, "left": -120, "attrs": { "color": "yellow","label": "BUSY" } },
+    { "type": "wokwi-resistor", "id": "rPass",   "top": -40, "left": -40, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "rDefect", "top": 40,  "left": -40, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "rBusy",   "top": 120, "left": -40, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 260, "left": -120, "attrs": { "volume": "0.1" } }
+  ],
+  "connections": [
+    [ "oled:SDA", "esp:21", "green", [] ],
+    [ "oled:SCL", "esp:22", "green", [] ],
+    [ "oled:VCC", "esp:3V3", "red", [] ],
+    [ "oled:GND", "esp:GND.1", "black", [] ],
+
+    [ "btnNext:2.r", "esp:D14", "purple", [] ],
+    [ "btnNext:1.r", "esp:GND.1", "black", [] ],
+    [ "btnAuto:2.r", "esp:D27", "purple", [] ],
+    [ "btnAuto:1.r", "esp:GND.1", "black", [] ],
+
+    [ "esp:D25", "rPass:1", "green", [] ],
+    [ "rPass:2", "ledPass:A", "green", [] ],
+    [ "ledPass:C", "esp:GND.1", "black", [] ],
+
+    [ "esp:D26", "rDefect:1", "red", [] ],
+    [ "rDefect:2", "ledDefect:A", "red", [] ],
+    [ "ledDefect:C", "esp:GND.1", "black", [] ],
+
+    [ "esp:D33", "rBusy:1", "gold", [] ],
+    [ "rBusy:2", "ledBusy:A", "gold", [] ],
+    [ "ledBusy:C", "esp:GND.1", "black", [] ],
+
+    [ "esp:D32", "buzzer:1", "gold", [] ],
+    [ "buzzer:2", "esp:GND.1", "black", [] ]
+  ]
+}
